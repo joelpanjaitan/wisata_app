@@ -18,7 +18,12 @@
     <span>{{ currentDate }}</span>
     <div class="todoList">
       <ul class="ulList">
-        <li class="liData" v-for="todo in activityList" :key="todo.id">
+        <li
+          class="liData"
+          v-for="todo in activityList"
+          :key="todo.id"
+          :ref="'item-' + todo.id"
+        >
           <div class="liDisplay">
             <input
               v-if="todo.isEditing"
@@ -83,6 +88,7 @@ export default {
         completed: false,
       });
       this.newTask = "";
+      this.focustLastItem();
     },
     editTodo(todo) {
       todo.isEditing = true;
@@ -103,6 +109,17 @@ export default {
     },
     deleteTodo(id) {
       this.activityList = this.activityList.filter((todo) => todo.id !== id);
+    },
+    focustLastItem() {
+      const lastItem = this.activityList[this.activityList.length - 1];
+      if (lastItem) {
+        this.$nextTick(() => {
+          const lastItemRef = this.$refs["item-" + lastItem.id];
+          if (lastItemRef && lastItemRef.length) {
+            lastItemRef[0].focus();
+          }
+        });
+      }
     },
     clearTodo() {
       this.activityList = this.activityList.filter((todo) => !todo.completed);

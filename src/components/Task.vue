@@ -15,6 +15,7 @@
       For add todo project type input above,<br />
       check out the list below
     </p>
+    <span>{{ currentDate }}</span>
     <div class="todoList">
       <ul class="ulList">
         <li class="liData" v-for="todo in activityList" :key="todo.id">
@@ -59,6 +60,7 @@ export default {
       newTask: "",
       activityList: [],
       activityId: 0,
+      currentDate: new Date().toLocaleString(),
     };
   },
   components: {
@@ -105,6 +107,16 @@ export default {
     clearTodo() {
       this.activityList = this.activityList.filter((todo) => !todo.completed);
     },
+    updateDate() {
+      this.currentDate = new Date().toLocaleString(); // Update the current date and time
+    },
+  },
+  mounted() {
+    this.updateDate();
+    this.interval = setInterval(this.updateDate, 1000);
+  },
+  beforeUnmount() {
+    clearInterval(this.interval);
   },
 };
 </script>
@@ -181,6 +193,7 @@ a {
   padding: 5px 0px;
   background-color: #aeb1b4;
   margin-bottom: 5px;
+  border-radius: 20px;
 }
 .todoList {
   display: flex;

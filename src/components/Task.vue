@@ -36,6 +36,7 @@
             />
             <span
               class="todoSpan"
+              :class="{ completedTask: todo.completed }"
               v-if="!todo.isEditing"
               @click="editTodo(todo)"
             >
@@ -190,7 +191,7 @@ a {
   padding-left: 10px;
 }
 .editTodoInput {
-  width: 8vw;
+  width: 14vw;
   margin-left: 1vw;
 }
 .liDisplay {
@@ -202,7 +203,7 @@ a {
   padding-right: 10px;
 }
 .ulList {
-  max-width: 20vw;
+  max-width: 30vw;
   gap: 2px;
 }
 .liData {
@@ -217,5 +218,8 @@ a {
   justify-content: center;
   max-height: 30vh;
   overflow-y: auto;
+}
+.completedTask {
+  text-decoration: line-through;
 }
 </style>

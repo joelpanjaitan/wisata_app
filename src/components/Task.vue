@@ -26,6 +26,7 @@
               @keyup.enter="doneEditing(todo)"
               aria-label="Edit task"
               class="editTodoInput"
+              ref="input"
             />
             <span
               class="todoSpan"
@@ -50,6 +51,7 @@
 <script>
 import { RiDeleteBinLine } from "@remixicon/vue";
 import { RiCheckFill } from "@remixicon/vue";
+import { ref } from "vue";
 export default {
   name: "TodoTask",
   data() {
@@ -66,6 +68,10 @@ export default {
   props: {
     msg: String,
   },
+  setup() {
+    const input = ref(null);
+    return { input };
+  },
   methods: {
     createTodo() {
       if (this.newTask.trim() === "") return;
@@ -80,6 +86,10 @@ export default {
       todo.isEditing = true;
     },
     setComplete(todo) {
+      if (todo.isEditing === true) {
+        todo.isEditing = false;
+        return;
+      }
       todo.completed = !todo.completed;
     },
     doneEditing(todo) {
@@ -152,6 +162,7 @@ a {
 }
 .editTodoInput {
   width: 8vw;
+  margin-left: 1vw;
 }
 .liDisplay {
   display: flex;
@@ -159,6 +170,7 @@ a {
   justify-content: center;
   align-items: center;
   gap: 10px;
+  padding-right: 10px;
 }
 .ulList {
   max-width: 20vw;

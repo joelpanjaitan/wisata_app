@@ -52,6 +52,17 @@
         </li>
       </ul>
     </div>
+    <div class="footer">
+      <h1 class="text-3xl font-bold underline">Do your task!</h1>
+      <button
+        class="icon clearButton"
+        v-if="activityList && activityList.length"
+        @click="clearTodo"
+        aria-label="Clear completed tasks"
+      >
+        Clear Completed
+      </button>
+    </div>
   </div>
 </template>
 
@@ -159,6 +170,12 @@ a {
   border-radius: 20px;
   border-color: ghostwhite;
 }
+.clearButton {
+  border-radius: 20px;
+  padding: 0px 10px;
+  height: 40px;
+  cursor: pointer;
+}
 .parentDiv {
   width: 100%;
   display: flex;
@@ -218,6 +235,12 @@ a {
   justify-content: center;
   max-height: 30vh;
   overflow-y: auto;
+}
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
 }
 .completedTask {
   text-decoration: line-through;

@@ -141,11 +141,13 @@ a {
 }
 .ulList {
   max-width: 20vw;
+  gap: 2px;
 }
 .liData {
   display: block;
   padding: 5px 0px;
   background-color: #aeb1b4;
+  margin-bottom: 5px;
 }
 .todoList {
   display: flex;

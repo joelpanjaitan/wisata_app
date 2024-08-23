@@ -5,97 +5,36 @@
       <div class="inputDiv">
         <input
           class="inputData"
-          v-model="newTodo"
+          v-model="newTask"
           placeholder="Add task here"
-        /><button class="inputButton">Add this</button>
+          @keyup.enter="createTodo"
+        /><button class="inputButton" @click="createTodo">add new</button>
       </div>
     </div>
-    <ul>
-      <li v-for="todo in todos" :key="todo.id">
-        <input type="checkbox" v-model="todo.completed" />
-        {{ todo.text }}
-        <button @click="removeTodo(todo.id)">Remove</button>
-      </li>
-    </ul>
     <p>
       For add todo project type input above,<br />
       check out the list below
     </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel"
-          target="_blank"
-          rel="noopener"
-          >babel</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint"
-          target="_blank"
-          rel="noopener"
-          >eslint</a
-        >
-      </li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li>
-        <a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a>
-      </li>
-      <li>
-        <a href="https://forum.vuejs.org" target="_blank" rel="noopener"
-          >Forum</a
-        >
-      </li>
-      <li>
-        <a href="https://chat.vuejs.org" target="_blank" rel="noopener"
-          >Community Chat</a
-        >
-      </li>
-      <li>
-        <a href="https://twitter.com/vuejs" target="_blank" rel="noopener"
-          >Twitter</a
-        >
-      </li>
-      <li>
-        <a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a>
-      </li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li>
-        <a href="https://router.vuejs.org" target="_blank" rel="noopener"
-          >vue-router</a
-        >
-      </li>
-      <li>
-        <a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-devtools#vue-devtools"
-          target="_blank"
-          rel="noopener"
-          >vue-devtools</a
-        >
-      </li>
-      <li>
-        <a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener"
-          >vue-loader</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-          rel="noopener"
-          >awesome-vue</a
-        >
-      </li>
-    </ul>
+    <div class="todoList">
+      <ul>
+        <li class="liData" v-for="todo in activityList" :key="todo.id">
+          <div class="liDisplay">
+            <input type="checkbox" v-model="todo.completed" />
+            <input
+              v-if="todo.isEditing"
+              v-model="todo.text"
+              @blur="doneEditing(todo)"
+              @keyup.enter="doneEditing(todo)"
+              aria-label="Edit task"
+            />
+            <span v-else @click="editTodo(todo)">
+              {{ todo.text }}
+            </span>
+            <button @click="deleteTodo(todo.id)">Remove</button>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -111,6 +50,33 @@ export default {
   },
   props: {
     msg: String,
+  },
+  methods: {
+    createTodo() {
+      if (this.newTask.trim() === "") return;
+      this.activityList.push({
+        id: this.activityId++,
+        text: this.newTask,
+        completed: false,
+      });
+      this.newTask = "";
+    },
+    editTodo(todo) {
+      todo.isEditing = true;
+    },
+    doneEditing(todo) {
+      if (todo.text.trim() === "") {
+        this.removeTodo(todo.id);
+      } else {
+        todo.isEditing = false;
+      }
+    },
+    deleteTodo(id) {
+      this.activityList = this.activityList.filter((todo) => todo.id !== id);
+    },
+    clearTodo() {
+      this.activityList = this.activityList.filter((todo) => !todo.completed);
+    },
   },
 };
 </script>
@@ -145,11 +111,28 @@ a {
   border-color: rgb(156 163 175);
   border-width: 1px;
   border-radius: 20px;
+  padding: 10px;
 }
 .inputButton {
+  cursor: pointer;
   border-radius: 20px;
+  padding-top: 9px;
+  padding-bottom: 9px;
   position: absolute;
-  right: -2%;
+  right: -6%;
   top: 0;
+}
+.liDisplay {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+}
+.liData {
+  display: block;
+}
+.todoList {
+  max-height: 30vh;
+  overflow-y: auto;
 }
 </style>

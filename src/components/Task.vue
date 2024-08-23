@@ -16,10 +16,10 @@
       check out the list below
     </p>
     <div class="todoList">
-      <ul>
+      <ul class="ulList">
         <li class="liData" v-for="todo in activityList" :key="todo.id">
           <div class="liDisplay">
-            <input type="checkbox" v-model="todo.completed" />
+            <!-- <input type="checkbox" v-model="todo.completed" /> -->
             <input
               v-if="todo.isEditing"
               v-model="todo.text"
@@ -30,7 +30,8 @@
             <span v-else @click="editTodo(todo)">
               {{ todo.text }}
             </span>
-            <button @click="deleteTodo(todo.id)">Remove</button>
+            <button @click="setComplete(todo)"><RiCheckFill /></button>
+            <button @click="deleteTodo(todo.id)"><RiDeleteBinLine /></button>
           </div>
         </li>
       </ul>
@@ -39,6 +40,8 @@
 </template>
 
 <script>
+import { RiDeleteBinLine } from "@remixicon/vue";
+import { RiCheckFill } from "@remixicon/vue";
 export default {
   name: "TodoTask",
   data() {
@@ -47,6 +50,10 @@ export default {
       activityList: [],
       activityId: 0,
     };
+  },
+  components: {
+    RiDeleteBinLine,
+    RiCheckFill,
   },
   props: {
     msg: String,
@@ -63,6 +70,9 @@ export default {
     },
     editTodo(todo) {
       todo.isEditing = true;
+    },
+    setComplete(todo) {
+      todo.completed = !todo.completed;
     },
     doneEditing(todo) {
       if (todo.text.trim() === "") {
@@ -126,12 +136,20 @@ a {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
   gap: 10px;
+}
+.ulList {
+  max-width: 20vw;
 }
 .liData {
   display: block;
+  padding: 5px 0px;
+  background-color: #aeb1b4;
 }
 .todoList {
+  display: flex;
+  justify-content: center;
   max-height: 30vh;
   overflow-y: auto;
 }

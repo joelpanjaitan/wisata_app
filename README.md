@@ -6,27 +6,36 @@
 This is a todo project with simple instruction and can display and add and also edit the data
 ```
 
-### Compiles and hot-reloads for development
+### Features of todo list:
 
 ```
-npm run serve
+- Easy to use
+- Maintain balance
+- Displays current date and time
+- Responsive on all device
+- Can be edited and deleted
 ```
 
-### Compiles and minifies for production
+### Features to be updated
 
 ```
-npm run build
+- Add subtasks
+- Can use scratch pad
+- Login features & databases
+- Reminder and alerts
 ```
 
-### Lints and fixes files
+### References
 
 ```
-npm run lint
+- vue js
+- tailwindcss
+- remixicon
 ```
 
-### Customize configuration
+### Contribution and website demo
 
-See [Configuration Reference](https://cli.vuejs.org/config/).
+See the pictures below for the contributon and the demo.
 
 ![alt text](image-1.png)
 

@@ -1,17 +1,20 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="max-w-1 max-h-1 flex flex-row justify-center">
+    <img alt="Vue logo" src="./assets/just-do-it.png" id="logo" />
+  </div>
+  <Task msg="Just Do It" />
+  <h1 class="text-3xl font-bold underline">Hello world!</h1>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Task from "./components/Task.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    Task,
+  },
+};
 </script>
 
 <style>
@@ -22,5 +25,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+#logo {
+  max-width: 50px;
 }
 </style>

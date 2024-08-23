@@ -3,7 +3,7 @@
     <img alt="Vue logo" src="./assets/just-do-it.png" id="logo" />
   </div>
   <Task msg="Just Do It" />
-  <h1 class="text-3xl font-bold underline">Hello world!</h1>
+  <h1 class="text-3xl font-bold underline">Do your task!</h1>
 </template>
 
 <script>

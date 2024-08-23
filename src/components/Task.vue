@@ -3,9 +3,20 @@
     <h1>{{ msg }}</h1>
     <div class="parentDiv">
       <div class="inputDiv">
-        <input class="inputData" /><button class="inputButton">Add this</button>
+        <input
+          class="inputData"
+          v-model="newTodo"
+          placeholder="Add task here"
+        /><button class="inputButton">Add this</button>
       </div>
     </div>
+    <ul>
+      <li v-for="todo in todos" :key="todo.id">
+        <input type="checkbox" v-model="todo.completed" />
+        {{ todo.text }}
+        <button @click="removeTodo(todo.id)">Remove</button>
+      </li>
+    </ul>
     <p>
       For add todo project type input above,<br />
       check out the list below
@@ -90,7 +101,14 @@
 
 <script>
 export default {
-  name: "HelloWorld",
+  name: "TodoTask",
+  data() {
+    return {
+      newTask: "",
+      activityList: [],
+      activityId: 0,
+    };
+  },
   props: {
     msg: String,
   },

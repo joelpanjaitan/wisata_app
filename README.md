@@ -1,9 +1,9 @@
-# wisata-app
+# wisata-app todo-project
 
-## Project setup
+## Project explanation
 
 ```
-npm install
+This is a todo project with simple instruction and can display and add and also edit the data
 ```
 
 ### Compiles and hot-reloads for development
@@ -28,4 +28,4 @@ npm run lint
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-![alt text](image.png)
+![alt text](image-1.png)

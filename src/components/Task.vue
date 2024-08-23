@@ -245,4 +245,19 @@ a {
 .completedTask {
   text-decoration: line-through;
 }
+@media all and (max-width: 666px) {
+  .ulList {
+    max-width: 60vw;
+    gap: 2px;
+  }
+  .inputButton {
+    cursor: pointer;
+    border-radius: 20px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    position: absolute;
+    right: -12%;
+    top: 0;
+  }
+}
 </style>

@@ -19,19 +19,27 @@
       <ul class="ulList">
         <li class="liData" v-for="todo in activityList" :key="todo.id">
           <div class="liDisplay">
-            <!-- <input type="checkbox" v-model="todo.completed" /> -->
             <input
               v-if="todo.isEditing"
               v-model="todo.text"
               @blur="doneEditing(todo)"
               @keyup.enter="doneEditing(todo)"
               aria-label="Edit task"
+              class="editTodoInput"
             />
-            <span v-else @click="editTodo(todo)">
+            <span
+              class="todoSpan"
+              v-if="!todo.isEditing"
+              @click="editTodo(todo)"
+            >
               {{ todo.text }}
             </span>
-            <button @click="setComplete(todo)"><RiCheckFill /></button>
-            <button @click="deleteTodo(todo.id)"><RiDeleteBinLine /></button>
+            <button @click="setComplete(todo)" class="icon">
+              <RiCheckFill />
+            </button>
+            <button @click="deleteTodo(todo.id)" class="icon">
+              <RiDeleteBinLine />
+            </button>
           </div>
         </li>
       </ul>
@@ -107,6 +115,10 @@ li {
 a {
   color: #42b983;
 }
+.icon {
+  border-radius: 20px;
+  border-color: ghostwhite;
+}
 .parentDiv {
   width: 100%;
   display: flex;
@@ -131,6 +143,15 @@ a {
   position: absolute;
   right: -6%;
   top: 0;
+}
+.todoSpan {
+  width: 15vw;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  padding-left: 10px;
+}
+.editTodoInput {
+  width: 8vw;
 }
 .liDisplay {
   display: flex;

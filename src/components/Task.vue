@@ -117,7 +117,7 @@ export default {
         this.$nextTick(() => {
           const lastItemRef = this.$refs["item-" + lastItem.id];
           if (lastItemRef && lastItemRef.length) {
-            lastItemRef[0].focus();
+            if (lastItemRef[0]) lastItemRef[0].scrollIntoView();
           }
         });
       }

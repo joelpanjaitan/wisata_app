@@ -58,6 +58,8 @@ export default {
           return "/img/just-do-it.b0253281.png";
         case "dark":
           return "/img/just-do-it-white.afbd0736.png";
+        case "light":
+          return "/img/just-do-it.b0253281.png";
         default:
           return "/img/just-do-it.b0253281.png";
       }

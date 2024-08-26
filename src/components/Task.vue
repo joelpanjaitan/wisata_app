@@ -199,7 +199,7 @@ a {
   padding-top: 9px;
   padding-bottom: 9px;
   position: absolute;
-  right: -6%;
+  right: -22px;
   top: 0;
 }
 .todoSpan {

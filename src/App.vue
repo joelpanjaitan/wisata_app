@@ -1,5 +1,5 @@
 <template>
-  <div class="background">
+  <div :class="backgroundClass">
     <div class="color_option">
       <button
         class="flat-selector button-theme"
@@ -37,6 +37,15 @@ export default {
       this.color = newColor;
     },
   },
+  computed: {
+    backgroundClass() {
+      return {
+        background: this.color === "flat",
+        backgroundLight: this.color === "light",
+        backgroundDark: this.color === "dark",
+      };
+    },
+  },
 };
 </script>
 
@@ -62,6 +71,19 @@ export default {
 .background {
   background-image: linear-gradient(100deg, #575656, #062e3f);
   color: #ffdfdb;
+  transition: 0.3s linear;
+  height: 100vh;
+}
+.backgroundLight {
+  background-image: linear-gradient(100deg, #d4f1ff, #ffffff);
+  color: #1a150e;
+  transition: 0.3s linear;
+  height: 100vh;
+}
+.backgroundDark {
+  background-image: linear-gradient(100deg, #001214, #001f29);
+  color: white;
+  transition: 0.3s linear;
   height: 100vh;
 }
 .button-theme {

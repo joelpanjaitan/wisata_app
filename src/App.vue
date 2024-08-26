@@ -135,4 +135,21 @@ export default {
 .dark-selector {
   background-image: linear-gradient(100deg, #001214, #001f29);
 }
+@media only screen and (max-width: 600px) {
+  .color_option {
+    justify-content: start;
+    margin-bottom: 5px;
+    padding-top: 10px;
+    display: flex;
+    gap: 0px;
+  }
+  .button-theme {
+    border: 1px solid #d1dae3;
+    border-radius: 100%;
+    height: 25px;
+    margin: 0 6px;
+    transition: tranform 150ms ease-in-out, box-shadow 200ms ease-in-out;
+    width: 25px;
+  }
+}
 </style>

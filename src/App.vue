@@ -1,13 +1,22 @@
 <template>
-  <div class="color_option">
-    <button class="flat-selector button-theme" /><button
-      class="light-selector button-theme"
-    /><button class="dark-selector button-theme" />
+  <div class="background">
+    <div class="color_option">
+      <button
+        class="flat-selector button-theme"
+        @click="handleColorChange('flat')"
+      /><button
+        class="light-selector button-theme"
+        @click="handleColorChange('light')"
+      /><button
+        class="dark-selector button-theme"
+        @click="handleColorChange('dark')"
+      />
+    </div>
+    <div class="max-w-1 max-h-1 flex flex-row justify-center">
+      <img alt="Vue logo" src="./assets/just-do-it.png" id="logo" />
+    </div>
+    <Task msg="Just Do It" :color="color" />
   </div>
-  <div class="max-w-1 max-h-1 flex flex-row justify-center">
-    <img alt="Vue logo" src="./assets/just-do-it.png" id="logo" />
-  </div>
-  <Task msg="Just Do It" />
 </template>
 
 <script>
@@ -15,8 +24,18 @@ import Task from "./components/Task.vue";
 
 export default {
   name: "App",
+  data() {
+    return {
+      color: "flat",
+    };
+  },
   components: {
     Task,
+  },
+  methods: {
+    handleColorChange(newColor) {
+      this.color = newColor;
+    },
   },
 };
 </script>
@@ -28,16 +47,22 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin: -8px;
 }
 #logo {
   max-width: 50px;
 }
 .color_option {
-  display: flex;
   justify-content: start;
-  gap: 10px;
   margin-bottom: 5px;
+  padding-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+.background {
+  background-image: linear-gradient(100deg, #575656, #062e3f);
+  color: #ffdfdb;
+  height: 100vh;
 }
 .button-theme {
   border: 1px solid #d1dae3;

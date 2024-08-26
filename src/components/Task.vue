@@ -86,6 +86,7 @@ export default {
   },
   props: {
     msg: String,
+    color: String,
   },
   setup() {
     const input = ref(null);

@@ -13,7 +13,7 @@
       />
     </div>
     <div class="max-w-1 max-h-1 flex flex-row justify-center">
-      <img alt="Vue logo" src="./assets/just-do-it.png" id="logo" />
+      <img alt="just do it" :src="imageSource" :class="logoClass" />
     </div>
     <Task msg="Just Do It" :color="color" />
   </div>
@@ -45,6 +45,23 @@ export default {
         backgroundDark: this.color === "dark",
       };
     },
+    logoClass() {
+      return {
+        blackLogo: this.color === "flat",
+        defaultLogo: this.color === "light",
+        whiteLogo: this.color === "dark",
+      };
+    },
+    imageSource() {
+      switch (this.color) {
+        case "flat":
+          return "/img/just-do-it.b0253281.png";
+        case "dark":
+          return "/img/just-do-it-white.afbd0736.png";
+        default:
+          return "/img/just-do-it.b0253281.png";
+      }
+    },
   },
 };
 </script>
@@ -58,8 +75,16 @@ export default {
   color: #2c3e50;
   margin: -8px;
 }
-#logo {
-  max-width: 50px;
+.blackLogo {
+  width: 50px;
+}
+.defaultLogo {
+  width: 50px;
+}
+.whiteLogo {
+  width: 60px;
+  margin-top: -16px;
+  margin-bottom: -24px;
 }
 .color_option {
   justify-content: start;

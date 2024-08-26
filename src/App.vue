@@ -13,7 +13,12 @@
       />
     </div>
     <div class="max-w-1 max-h-1 flex flex-row justify-center">
-      <img alt="just do it" :src="imageSource" :class="logoClass" />
+      <img alt="just do it" src="./assets/just-do-it.png" :class="logoClass" />
+      <img
+        alt="just do it"
+        src="./assets/just-do-it-white.png"
+        :class="logoClass2"
+      />
     </div>
     <Task msg="Just Do It" :color="color" />
   </div>
@@ -49,6 +54,13 @@ export default {
       return {
         blackLogo: this.color === "flat",
         defaultLogo: this.color === "light",
+        hidden: this.color === "dark",
+      };
+    },
+    logoClass2() {
+      return {
+        hide: this.color === "flat",
+        hidden: this.color === "light",
         whiteLogo: this.color === "dark",
       };
     },
@@ -79,6 +91,12 @@ export default {
 }
 .blackLogo {
   width: 50px;
+}
+.hide {
+  display: none;
+}
+.hidden {
+  display: none;
 }
 .defaultLogo {
   width: 50px;

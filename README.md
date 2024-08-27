@@ -16,6 +16,8 @@ https://wisata-app.rf.gd/
 - Displays current date and time
 - Responsive on all device
 - Can be edited and deleted
+- Color picker for theme
+- Clear all completed tasks
 ```
 
 ### Features to be updated
